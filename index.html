@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>L.A.O Consultoria Previdência</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Consultoria especializada em INSS: foco em reduzir erros no CNIS e acelerar o tempo de análise administrativa.">
+
+  <style>
+    /* === VARIÁVEIS PARA TEMA CLARO (LIGHT MODE) === */
+    :root {
+      --bg-color: #f7f7f7;    /* Fundo Principal: Cinza muito claro */
+      --text-color: #333333;  /* Cor do Texto: Preto escuro */
+      --accent-color: #A68A44; /* Dourado escuro/marrom para destaque */
+      --card-bg: #ffffff;     /* Fundo dos Cartões: Branco Puro */
+      --muted-color: #6a6a6a;  /* Texto Secundário: Cinza médio */
+      --border-color: #e0e0e0; /* Bordas e Linhas: Cinza claro */
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* === AJUSTES PARA O CABEÇALHO === */
+    header {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      background-color: #0E2B4B;
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .logo img {
+        height: 50px;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      font-weight: 500;
+      padding: 5px 0;
+      position: relative;
+    }
+    nav a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--accent-color);
+        transition: width .3s;
+    }
+    nav a:hover::after, nav a.active::after {
+        width: 100%;
+    }
+    /* ================================== */
+
+    /* === CSS PARA O BOTÃO DE WHATSAPP NA NAV === */
+    nav .btn-nav {
+      background-color: #008000;
+      color: #ffffff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      margin-left: 15px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+    }
+    nav .btn-nav:hover {
+      background-color: #006400;
+      text-decoration: none;
+    }
+    nav .btn-nav svg {
+      fill: #ffffff;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+    /* ================================================= */
+
+    /* === NOVO CSS PARA A SEÇÃO HERO EM 2 COLUNAS === */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 4fr 6fr;
+      gap: 30px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    }
+
+    @media (max-width: 768px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+            padding: 40px 0;
+        }
+        .hero-image {
+            margin-top: 30px;
+        }
+    }
+    /* ================================================= */
+
+
+    main {
+      padding: 40px 0;
+    }
+
+    section {
+      padding: 40px 0;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: var(--accent-color);
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    h3 {
+      color: var(--accent-color);
+      margin-top: 0;
+    }
+
+    .muted {
+      color: var(--muted-color);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card-grid-small {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border-color);
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .card ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+    .card ul li {
+        margin-bottom: 8px;
+        padding-left: 1.2em;
+        position: relative;
+    }
+    .card ul li::before {
+        content: '•';
+        color: var(--accent-color);
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-left: -1em;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    /* Estilos do formulário e botão */
+    label { display: block; margin-top: 15px; margin-bottom: 5px; font-weight: bold; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input:not([type]), textarea {
+      width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--card-bg); color: var(--text-color); box-sizing: border-box;
+    }
+    input::placeholder, textarea::placeholder { color: var(--muted-color); }
+    textarea { min-height: 100px; resize: vertical; }
+
+    .btn {
+      background-color: var(--accent-color);
+      color: var(--card-bg);
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover:not(:disabled) { background-color: #8c763b; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Estilos para Depoimentos */
+    .testimonial {
+        background-color: var(--card-bg);
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 5px solid var(--accent-color);
+        margin-bottom: 20px;
+        font-style: italic;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+    .testimonial .author {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+        font-style: normal;
+        color: var(--accent-color);
+    }
+    .text-center { text-align: center; }
+
+    /* CSS PARA LAYOUT DE 2 COLUNAS NO FORMULÁRIO */
+    .form-group {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 10px;
+    }
+    .form-field {
+        flex: 1;
+    }
+    .form-field.full-width {
+        flex: none;
+        width: 100%;
+    }
+    @media (max-width: 600px) {
+        .form-group {
+            flex-direction: column;
+            gap: 0;
+        }
+    }
+    /* ======================================================= */
+
+
+    footer {
+      background-color: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      padding: 30px 0;
+      text-align: center;
+      font-size: 0.9em;
+    }
+    footer .contact-info {
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    footer .footer-nav a {
+        margin: 0 10px;
+    }
+
+    /* Responsividade básica */
+    @media (max-width: 768px) {
+        h1 { font-size: 2em; }
+        header { flex-direction: column; text-align: center; }
+        nav { margin-top: 15px; }
+        nav a, nav .btn-nav { margin: 5px 10px; display: inline-block; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <a href="#hero" style="color: var(--text-color);">
+          <img src="logo-lao.png" alt="L.A.O Consultoria Previdência - Seu tempo, seu dinheiro, sua aposentadoria" style="height: 50px;">
+        </a>
+      </div>
+      <nav>
+        <a href="#hero">Home</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="https://wa.me/SEU_NUMERO" target="_blank" class="btn-nav">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M380.9 97.1C339.4 55.6 283.9 32 227.3 32 121.7 32 37 116.7 37 222.3c0 37.1 10.2 73 29.6 104.9l-29.6 111.9 114.2-29.4c30.2 16.2 64 24.5 98 24.5h.1c105.6 0 190.9-84.7 190.9-190.3 0-56.6-23.3-112.2-64.8-153.7zM227.3 410.8c-29.9 0-59.5-8.2-85.3-24.3l-6.5-3.9-67.9 17.6 17.9-66.2-4.2-6.5c-15.7-24.4-24-52.9-24-81.8 0-83.8 68.2-151.8 152.1-151.8 40.1 0 77.8 15.6 106.4 44.2 28.7 28.7 44.2 66.4 44.2 106.4s-15.6 77.8-44.2 106.4c-28.7 28.6-66.4 44.2-106.4 44.2h.1zM329.8 281.8c-1.5-.8-9.4-4.8-10.8-5.3-1.4-.4-2.4-.6-3.4 .6-1 1.1-3.9 5.3-4.8 6.4-1 .9-2 1.1-3.6 .5-1.6-.6-6.7-2.5-12.7-7.8-4.7-4.1-7.8-9.1-8.7-10.6-.9-1.5-.1-2.4 .7-3.1 .7-.7 1.6-1.8 2.3-2.6 .7-.8 1-.9 1.4-1.6 .4-.7 .2-1.3-.3-1.8-.4-.4-3.6-9-4.9-12.4-.4-1.4-.8-1.2-1.4-1.2h-2.9c-.6 0-1.6 .2-2.5 1.1-.9 .9-3.5 3.4-3.5 8.3 0 4.9 3.6 9.6 4.1 10.3 .5 .7 6.9 10.8 16.7 15.2 9.8 4.5 9.8 3 11.6 2.8 1.9-.3 6.1-2.5 7-4.9 .9-2.4 .9-4.5 .6-4.9-.3-.3-1.4-.5-3.3-1.5z"/></svg>
+            AGENDAMENTO
+        </a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero">
+        <div class="hero-grid">
+
+            <div class="hero-content">
+                <p class="muted">Pode confiar</p>
+                <h1>Fortalecendo sua segurança financeira com confiança e qualidade.</h1>
+                <p class="muted" style="font-size:1.2em; max-width: 600px;">Consultoria previdenciária personalizada para você. Seu direito a um futuro seguro financeiramente, com estratégias personalizadas.</p>
+
+                <a href="#contato" class="btn" style="margin-top: 20px;">Agende a sua consulta</a>
+
+                <div style="margin-top: 30px;">
+                      <a href="#servicos" class="muted"><u>Conheça os nossos serviços</u></a>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <img src="idosos.png" alt="Pessoas idosas felizes com a aposentadoria">
+
+            </div>
+        </div>
+      </section>
+
+
+
+      <section id="servicos">
+        <h2>Serviços de Consultoria Previdenciária</h2>
+        <div class="card-grid-small">
+
+          <div class="card">
+            <h3>Planejamento Previdenciário</h3>
+            <p class="muted">Análise detalhada e personalizada para garantir o melhor benefício.</p>
+            <ul class="muted">
+              <li><strong>Adequação do benefício</strong> previdenciário ao seu padrão de vida.</li>
+              <li>Identificação das melhores estratégias para <strong>maximizar o valor da aposentadoria</strong>.</li>
+              <li>Redução de incertezas e erros no processo de concessão do benefício.</li>
+              <li>Simulações personalizadas para previsão do valor e data ideal para aposentadoria.</li>
+            </ul>
+            <a href="#contato" style="margin-top: 15px; display: block;">Saiba Mais</a>
+          </div>
+
+          <div class="card">
+            <h3>Aposentadoria</h3>
+            <p class="muted">Orientação completa para concessão de aposentadoria conforme as regras atuais.</p>
+            <ul class="muted">
+              <li>Avaliação detalhada do direito ao benefício.</li>
+              <li>Assistência na preparação e envio de <strong>toda a documentação necessária</strong>.</li>
+              <li>Acompanhamento do processo até a concessão da aposentadoria.</li>
+              <li>Obtenção do <strong>melhor benefício</strong> conforme a legislação vigente.</li>
+            </ul>
+            <a href="#contato" style="margin-top: 15px; display: block;">Saiba Mais</a>
+          </div>
+
+          <div class="card">
+            <h3>Consultoria Previdenciária</h3>
+            <p class="muted">Suporte especializado para maximizar seus benefícios previdenciários.</p>
+            <ul class="muted">
+              <li>Análise personalizada dos <strong>direitos e benefícios previdenciários</strong>.</li>
+              <li>Planejamento financeiro para uma aposentadoria segura.</li>
+              <li><strong>Estratégias para otimização</strong> dos benefícios.</li>
+              <li>Orientação sobre questões legais e atualizações na legislação previdenciária.</li>
+            </ul>
+            <a href="#contato" style="margin-top: 15px; display: block;">Saiba Mais</a>
+          </div>
+
+        </div>
+      </section>
+
+
+
+      <section id="sobre">
+        <h2>Nossa História e Compromisso</h2>
+        <div class="card-grid" style="grid-template-columns: 1fr;">
+          <div class="card">
+            <p>A <strong>L.A.O Consultoria Previdenciária</strong> foi criada visando facilitar o acesso a benefícios previdenciários no Brasil. Com uma operação inicial modesta, a empresa rapidamente se destacou pela sua dedicação ao <strong>atendimento ao cliente</strong>.</p>
+            <p>Fortalecemos nossa reputação através de um trabalho detalhado e transparente. Atualmente, a empresa oferece <strong>consultoria personalizada</strong>, assegurando um planejamento previdenciário eﬁciente e conﬁável. </p>
+            <p>Com muita experiência (Adaptado da referência) no mercado, a <strong>L.A.O</strong> se compromete em ajudar seus clientes a alcançarem um futuro ﬁnanceiro mais seguro.</p>
+          </div>
+        </div>
+      </section>
+
+
+
+      <section id="depoimentos">
+        <h2>O que nossos clientes dizem</h2>
+        <div class="card-grid-small">
+            <div class="testimonial">
+                "Eu estou nessa contagem!!! <strong>Trabalho perfeito!!!</strong>"
+                <span class="author">— Cliente (djalmaaquino.mkt)</span>
+            </div>
+            <div class="testimonial">
+                "Eu fui uma que graças a vc e a equipe da L.A.O em 2022 consegui minha aposentadoria. <strong>Muito obrigada.</strong> Indico a todos que conheço e estão querendo se aposentar."
+                <span class="author">— Cliente (anabeatrisdomingues)</span>
+            </div>
+            <div class="testimonial">
+                "O planejamento foi <strong>crucial</strong> para eu entender o melhor momento de me aposentar. Serviço transparente e muito profissional."
+                <span class="author">— Cliente Satisfeito</span>
+            </div>
+        </div>
+      </section>
+
+
+
+      <section id="contato" style="background-color: var(--card-bg); border-radius: 8px;">
+        <h2 style="text-align: left; padding-top: 10px;">Preencha o formulário que um dos nossos especialistas entrará em contato com você.</h2>
+        <div class="card-grid" style="padding-top: 0;">
+
+          <div class="card" style="background-color: var(--bg-color);">
+            <h3>CONTATO RÁPIDO</h3>
+            <p class="muted">O envio usa Formspree para receber no seu e‑mail.</p>
+            <form id="contact" action="https://formspree.io/f/mdkwkdog" method="POST">
+
+              <div class="form-group">
+                  <div class="form-field">
+                      <label for="nome">Nome</label>
+                      <input id="nome" name="name" type="text" required placeholder="Seu nome completo">
+                  </div>
+                  <div class="form-field">
+                      <label for="email">E‑mail</label>
+                      <input id="email" name="email" type="email" required placeholder="seu@exemplo.com">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <div class="form-field">
+                      <label for="telefone">Telefone / WhatsApp</label>
+                      <input id="telefone" name="phone" type="tel" placeholder="(11) 9xxxx-xxxx">
+                  </div>
+                  <div class="form-field">
+                       <label for="vazio" style="color: transparent;">Mensagem</label>
+                       <input id="vazio" disabled style="background-color: var(--bg-color); border: 1px solid var(--bg-color); cursor: default; height: 43px;" value="">
+                  </div>
+              </div>
+
+              <div class="form-field full-width">
+                  <label for="mensagem">Mensagem</label>
+                  <textarea id="mensagem" name="message" placeholder="Conte um pouco do seu caso"></textarea>
+              </div>
+
+              <p class="muted" style="font-size:12px;margin-top:8px">Ao enviar, você aceita que eu use os dados para tratar seu pedido. Não sou advogado — atuação administrativa apenas.</p>
+              <button type="submit" class="btn" style="margin-top:8px">Enviar</button>
+            </form>
+          </div>
+
+          <div class="card" style="background-color: var(--bg-color);">
+            <h3>Fale Conosco</h3>
+            <p class="muted">Entre em contato através dos nossos canais:</p>
+            <p><strong>Telefone/WhatsApp:</strong> <a href="tel:12997779830" style="display: block;">12 997779830</a></p>
+            <p><strong>E-mail:</strong> <a href="mailto:lourivelsonafonsiodeoliveira@gmail.com" style="display: block;">lourivelsonafonsiodeoliveira@gmail.com</a></p>
+
+            <h3 style="margin-top: 30px;">Nosso Endereço</h3>
+            <p>Rua Airton Pelogia, N° 1005, São José dos Campos-SP</p>
+
+            <h3 style="margin-top: 30px;">Redes Sociais</h3>
+            <a href="#" style="margin-right: 15px;">Facebook</a>
+            <a href="#">Instagram</a>
+          </div>
+
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-nav">
+              <a href="#hero">Home</a>
+              <a href="#servicos">Serviços</a>
+              <a href="#sobre">Sobre</a>
+              <a href="#contato">Contato</a>
+        </div>
+
+        <div class="contact-info">
+          <a href="tel:12997779830" class="muted">Telefone: 12 997779830</a>
+          <a href="mailto:lourivelsonafonsiodeoliveira@gmail.com" class="muted">E-mail: lourivelsonafonsiodeoliveira@gmail.com</a>
+          <div class="muted">Rua Airton Pelogia, N° 1005, São José dos Campos-SP</div>
+        </div>
+
+        <div class="muted">© <span id="year"></span> <strong>L.A.O Consultoria Previdência</strong></div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Preenche o ano atual no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // UX simples para sucesso do formulário
+    const form = document.getElementById('contact');
+    form.addEventListener('submit', async (e)=>{
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; btn.textContent = 'Enviando...';
+      setTimeout(()=>{ btn.disabled=false; btn.textContent='Enviar' }, 3000);
+    });
+  </script>
+</body>
+</html>
